@@ -1,0 +1,24 @@
+node commands:
+when starting from scratch:
+	sudo perf record -e cycles:u -g -- node --perf-basic-prof app.js
+when server running:
+	sudo perf record -F99 -p `pgrep -n node` -g -- sleep 3
+filtering useless data:
+ 	sed -i -e "/( __libc_start| LazyCompile | v8::internal::| Builtin:| Stub:| LoadIC:|[unknown\]| LoadPolymorphicIC:)/d" -e 's/ LazyCompile:[*~]\?/ /' perfs.out
+docker command:
+	docker run ... --cap-add SYS_ADMIN...
+options in nodejs
+	--perf-basic-prof-only-functions
+
+cache analysis (not supported)
+	sudo perf c2c report
+
+system wide 
+	sudo perf stat -e cycles,instructions,cache-references,cache-misses,bus-cycles -a
+
+disable nmi watchdog
+	sudo sysctl kernel.nmi_watchdog=0
+
+filter results
+	sed '/perf/d' testdata.txt > acttestdata.txt
+
