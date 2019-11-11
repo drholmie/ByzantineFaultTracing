@@ -508,23 +508,3 @@ var port = process.env.PORT || 8000;
 app.listen(port,function(){
   console.log("Live on port: " + port);
 });
-
-
-
-app.post("/login",(req,res) => {
-    MongoClient.connect(url, function(err,client) {
-        if (err) throw err;
-        var db = client.db("mydb");
-        console.log("inserting values");
-        console.log(req.body.username);
-        db.collection('Example').insertOne({
-            username :req.body.username,
-            passwd: req.body.passwd
-            }, function(err,res){
-                if (err) throw err;
-                console.log("inserted!!!!!!");
-                client.close();
-                });	
-        });
-                res.sendStatus(200);
-    });
