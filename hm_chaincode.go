@@ -37,8 +37,15 @@ func (s *HMChaincode) Invoke(stub shim.ChaincodeStubInterface) peer.Response {
 	
 	if function == "verifyHeatMap" {
 		return s.verifyHeatMap(stub, args)
-	} else if function == "addHeatMap" {
+	} 
+	else if function == "addHeatMap" {
 		return s.addHeatMap(stub, args)
+	} 
+	else if function == "queryHeatMap" {
+		return s.queryHeatMap(stub, args)
+	} 
+	else if function == "deleteHeatMap" {
+		return s.deleteHeatMap(stub, args)
 	}
 
 	return shim.Error("invalidFunctionError")
