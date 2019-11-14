@@ -43,9 +43,13 @@ MongoClient.connect(url, function(err,client) {
 app.post("/formsubmit",(req,res) => {
 MongoClient.connect(url, function(err, client) {
   if (err) throw err;
+  var name=req.body.cardname;
+  var cardno=req.body.cardno;
+  var cardexpiry=req.body.expiry;
+  var cardcvv=req.body.cvv;
   var db = client.db("mydb");
   console.log("verifying");
-  db.collection('Example').find({username:req.body.username,pwd:req.body.passwd}, function(err,res){
+  db.collection('Example').find({name:name,cardno:cardno,cardexpiry:cardexpiry, cardcvv:cardcvv}, function(err,res){
 	if (err) throw err;
 	console.log("qeury successful");
 	client.close();

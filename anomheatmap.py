@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 for i in range(1,11):
         missdata=[]
-        with open("acttestdata"+str(i)+".txt","r")as fp:
+        with open("anomacttestdata"+str(i)+".txt","r")as fp:
             data = fp.readlines()
             for line in data:
                 if "cache-misses" in line:
