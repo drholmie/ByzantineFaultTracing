@@ -32,16 +32,16 @@ MongoClient.connect(url, function(err,client) {
 	var db = client.db("mydb");
 	console.log("inserting values");
 	console.log(req.body.username);
-	db.collection('Example').insertOne({
+	db.collection('Example').find({
 		username :req.body.username,
 		passwd: req.body.passwd
 		}, function(err,res){
 			if (err) throw err;
-			console.log("inserted!!!!!!");
+			console.log("OK");
 			client.close();
 			});	
 	});
-			res.sendStatus(200);
+			res.status(200).send("OK");
 });
 app.post("/formsubmit",(req,res) => {
 MongoClient.connect(url, function(err, client) {
