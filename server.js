@@ -1,6 +1,9 @@
 'use strict';
 
 const express = require('express');
+const {exec} = require('child_process');
+const { execSync } = require('child_process');
+exec("sudo perf record -e cache-references,cache-misses -a");
 const MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017";
 // Constants
@@ -55,7 +58,16 @@ MongoClient.connect(url, function(err, client) {
 	client.close();
 	});
 });
-	res.sendStatus(200);
+var img;
+//var stdout = execSync("sudo sh ./closegen.sh");
+var child = execSync("sudo sh ./closegen.sh",{
+    cwd: process.cwd(),
+    env: process.env,
+    stdio: 'pipe',
+    encoding: 'utf-8'});
+img = child;
+exec("sudo sh ./autogen.sh");
+	res.status(200).send(JSON.stringify({'img': img}));
 });
 
 
