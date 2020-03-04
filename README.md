@@ -8,4 +8,13 @@ A novel algorithm for Byzantine Fault Tracing on distributed services, using blo
 - Handling both read and write attacks
 - Handling malfunctions not just adversaries
 
+The following showcases how the different graphs look with and without anomalies:
+### With anomalies
+![alt text](https://github.com/drholmie/ByzantineFaultTracing/blob/master/anom1.png "Anomaly")
+
+### Normal Execution (without anomalies)
+
+![alt text](https://github.com/drholmie/ByzantineFaultTracing/blob/master/norm1.png "Normal")
+
+
 To take a look at our progress you can check out the different branches in the repo or the projects page. 
